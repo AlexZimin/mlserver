@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 from tensorflow.keras.applications.resnet50 import ResNet50,decode_predictions,preprocess_input
-from tensorflow.keras.initializers import glorot_uniform
+#from tensorflow.keras.initializers import glorot_uniform
 from datetime import datetime
 import io
 from flask import Flask,Blueprint,request,render_template,jsonify
@@ -15,7 +15,6 @@ from modules.dataBase import collection as db
 
 
 mod = Blueprint('backend',__name__,template_folder='templates',static_folder='./static')
-UPLOAD_URL = 'http://192.168.1.103:5000/static/'
 model = ResNet50(weights='imagenet')
 model._make_predict_function()
 
@@ -42,12 +41,6 @@ def predict():
             path = os.path.join(os.getcwd()+'\\modules\\static\\'+user_file.filename)
             user_file.save(path)
             classes = identifyImage(path)
-            #db.addNewImage(
-                #user_file.filename,
-                #classes[0][0][1],
-                #str(classes[0][0][2]),
-                #datetime.now(),
-                #UPLOAD_URL+user_file.filename)
             response=[{"name":classes[0][0][1],"prediction":str(classes[0][0][2])},
             {"name":classes[0][1][1],"prediction":str(classes[0][1][2])},
             {"name":classes[0][2][1],"prediction":str(classes[0][2][2])}]
