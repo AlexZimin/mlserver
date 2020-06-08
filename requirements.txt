@@ -27,9 +27,9 @@ rsa==4.0
 scipy==1.4.1
 six==1.15.0
 tensorboard==2.2.1
-tensorboard-plugin-wit==1.6.0
-tensorflow==2.1.0
-tensorflow-estimator==2.1.0
+tensorboard-plugin-wit
+tensorflow
+tensorflow-estimator
 termcolor==1.1.0
 urllib3==1.25.8
 Werkzeug==0.16.1
